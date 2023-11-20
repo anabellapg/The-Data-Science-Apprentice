@@ -1,0 +1,32 @@
+import random
+
+class Puerta():
+
+  def __init__ (self,premio):
+    self.premio = premio
+
+  def abrir(self):
+    return self.premio
+
+victorias=0
+
+for i in range (0,1000):
+  #Inicializamos las puertas
+  puertas=[Puerta("Cabra"), Puerta("Cabra"), Puerta("Coche")]
+  random.shuffle(puertas)
+
+  #Elegimos de forma aleatoria una puerta
+  eleccion1=random.choice([0,1,2])
+  puertas.pop(eleccion1)
+  #El presentador abre una puerta que contenga una cabra
+  for i in range(len(puertas)):
+    if puertas[i].abrir()=="Cabra":
+        puertas.pop(i)
+        break
+
+  #Evaluamos el contenido de la puerta restante
+  if puertas[0].abrir()=="Coche":
+    victorias+=1
+
+probabilidad=victorias/1000
+print(probabilidad)
